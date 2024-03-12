@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "name": "NewsApi.org",
+    "link": "newsapi",
+    "image": "newsapi.png"
+  },
+  {
+    "id": 1,
+    "name": "The Guardian",
+    "link": "guardian",
+    "image": "/guardian.png"
+  },
+  {
+    "id": 2,
+    "name": "New York Times",
+    "link": "nytimes",
+    "image": "/nyt.png"
+  }
+]
