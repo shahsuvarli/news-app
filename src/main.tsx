@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import NewsSource from "./routes/news-source";
 import Sources from "./components/sources";
+import NewsSource from "./routes/news-source";
 
 const router = createBrowserRouter([
   {
