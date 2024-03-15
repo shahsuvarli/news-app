@@ -23,7 +23,6 @@ export default function SearchForm() {
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const results = await useAPI(data);
-    console.log(results);
     setResult(results);
   };
 

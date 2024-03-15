@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Banner from "./components/banner";
+import Header from "./components/header";
 
 function App() {
   return (
     <div>
       <div className="mb-8">
-        <Banner />
+        <Header />
       </div>
       <div className="p-6">
         <Outlet />

@@ -4,6 +4,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import NewsSource from "./routes/news-source";
+import Home from "./routes/home";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Home/>,
+      },
+      {
+        path: "/search",
         element: <NewsSource />,
       },
     ],

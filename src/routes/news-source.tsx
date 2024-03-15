@@ -1,11 +1,7 @@
-import SearchForm from "../components/search-form";
+import SearchForm from "../components/search";
 
 const NewsSource = () => {
-  return (
-    <div>
-      <SearchForm />
-    </div>
-  );
+  return <SearchForm />;
 };
 
 export default NewsSource;
