@@ -1,11 +1,9 @@
 export default async function useAPI(data: any) {
-  console.log(data);
   if (data.category === "newsapi" || !data.category) {
     const res = await fetch(
-      `https://newsapi.org/v2/everything?q=${data.keyword}&from=${data.date}&language=en&sortBy=publishedAt&apiKey=5b17401668b04eae906aa1bd6a179966`
+      `https://newsapi.org/v2/everything?q=${data.keyword}&from=${data.date}&language=en&sortBy=publishedAt&apiKey=1d59d6783d3a4f9ca5fc0fc9eaf52cc0`
     );
     const result = await res.json();
-
     const final_result = result.articles.map((obj: any, index: number) => {
       return {
         id: index,
@@ -17,7 +15,6 @@ export default async function useAPI(data: any) {
         altImage: "newsapi.png",
       };
     });
-    console.log(final_result);
     return final_result;
   } else if (data.category === "nytimes") {
     const res = await fetch(
@@ -25,7 +22,6 @@ export default async function useAPI(data: any) {
     );
 
     const response = await res.json();
-
     const final_result = response.response?.docs.map(
       (obj: any, index: number) => ({
         id: index,
@@ -39,7 +35,6 @@ export default async function useAPI(data: any) {
         altImage: "/nyt.png",
       })
     );
-    // console.log(final_result);
     return final_result;
   } else if (data.category === "guardian") {
     const res = await fetch(
@@ -47,7 +42,6 @@ export default async function useAPI(data: any) {
     );
 
     const response = await res.json();
-
     const final_result = response.response.results.map(
       (obj: any, index: number) => {
         return {
@@ -64,5 +58,4 @@ export default async function useAPI(data: any) {
 
     return final_result;
   }
-  return null;
 }
