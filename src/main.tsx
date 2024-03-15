@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import Sources from "./components/sources";
 import NewsSource from "./routes/news-source";
 
 const router = createBrowserRouter([
@@ -14,10 +13,6 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Sources />,
-      },
-      {
-        path: "/news-source/:sourceId",
         element: <NewsSource />,
       },
     ],
