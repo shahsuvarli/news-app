@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
-import useSourceId from "../hooks/useSourceId";
+import SearchForm from "../components/search-form";
 
 const NewsSource = () => {
-  const { sourceId } = useParams();
-  const source = useSourceId(sourceId);
-  return <div>NewsSource - {source?.name}</div>;
+  return (
+    <div>
+      <SearchForm />
+    </div>
+  );
 };
 
 export default NewsSource;
