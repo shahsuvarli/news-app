@@ -74,7 +74,7 @@ export default function SearchNews() {
               <label htmlFor="source">Source</label>
               <select
                 className={`mt-1 p-2 border rounded w-full text-gray-700 placeholder:text-sm placeholder:italic outline-none`}
-                {...register("category")}
+                {...register("source")}
                 defaultValue=""
                 id="source"
               >
