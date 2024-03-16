@@ -37,10 +37,6 @@ docker run -d -p 5173:5173 news-app
 
 3. Open your browser and navigate to `http://localhost:5173` to view the application running within the Docker container.
 
-## Usage
-
-- Open your browser and navigate to `http://localhost:5173` to view the application.
-
 ## Credits
 
 - This application utilizes the APIs provided by NewsAPI, The Guardian, and The New York Times to fetch news content.
