@@ -1,8 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaRegNewspaper } from "react-icons/fa";
 
 const Header = () => {
-  const { pathname } = useLocation();
   return (
     <div className="text-slate-700 w-full h-20 bg-slate-200 p-2 flex flex-row gap-4 items-center justify-between px-8">
       <span className="flex flex-row gap-10 text-slate-800 items-center">

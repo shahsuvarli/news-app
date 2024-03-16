@@ -1,5 +1,4 @@
 export default async function useNewsFeed(data: any, value: any) {
-  console.log(value);
   // cleaning of array of categories
   const arrayOfCategories: any = [];
   JSON.parse(data)?.map((item: any) => {

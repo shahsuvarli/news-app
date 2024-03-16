@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import NewsSource from "./routes/news-source";
-import Home from "./routes/home";
+import SearchNews from "./routes/SearchNews";
+import NewsFeed from "./routes/NewsFeed";
 
 const router = createBrowserRouter([
   {
@@ -14,11 +14,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home/>,
+        element: <NewsFeed/>,
       },
       {
         path: "/search",
-        element: <NewsSource />,
+        element: <SearchNews />,
       },
     ],
   },
