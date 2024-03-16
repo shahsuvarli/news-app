@@ -1,8 +1,15 @@
-export default async function useAPI(data: any) {
-  if (data.source === "newsapi" || !data.source) {
-    const query = data.keyword + (data.category ? ` AND ${data.category}` : "");
+import { NewsFeedInputs } from "../constants/types";
+
+export default async function useAPI({
+  source,
+  keyword,
+  category,
+  date,
+}: NewsFeedInputs) {
+  if (source === "newsapi" || !source) {
+    const query = keyword + (category ? ` AND ${category}` : "");
     const res = await fetch(
-      `https://newsapi.org/v2/everything?q=(${query})&from=${data.date}&language=en&sortBy=publishedAt&apiKey=5818a991931142769f180a3f0cbe92cd`
+      `https://newsapi.org/v2/everything?q=(${query})&from=${date}&language=en&sortBy=publishedAt&apiKey=5818a991931142769f180a3f0cbe92cd`
     );
     const result = await res.json();
     const final_result = result.articles.map((obj: any, index: number) => {
@@ -17,11 +24,11 @@ export default async function useAPI(data: any) {
       };
     });
     return final_result;
-  } else if (data.source === "nytimes") {
-    const parsedDate = data.date?.replaceAll("-", "");
+  } else if (source === "nytimes") {
+    const parsedDate = date.toString()?.replaceAll("-", "");
     const res = await fetch(
       `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${
-        data.keyword + " " + data.category
+        keyword + " " + category
       }&begin_date=${
         parsedDate || "20220101"
       }&api-key=6smfx8F6IhtgLQ2MMAL2dN1Sbpo0SbHm`
@@ -42,13 +49,11 @@ export default async function useAPI(data: any) {
       })
     );
     return final_result;
-  } else if (data.source === "guardian") {
-    const section = data.category
-      ? `&section=${data.category.toLowerCase()}`
-      : "";
+  } else if (source === "guardian") {
+    const section = category ? `&section=${category.toLowerCase()}` : "";
     const res = await fetch(
-      `https://content.guardianapis.com/search?q=${data.keyword}&from-date=${
-        data.date || "2022-01-01"
+      `https://content.guardianapis.com/search?q=${keyword}&from-date=${
+        date || "2022-01-01"
       }${section}&show-fields=thumbnail&api-key=2e0e9f73-d7a7-42a3-b25a-c2f8418d7048`
     );
     const response = await res.json();

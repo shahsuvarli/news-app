@@ -1,4 +1,6 @@
-const NewsCard = ({ item }: any) => {
+import { NewsCardType } from "../constants/types";
+
+const NewsCard = ({ item }: { item: NewsCardType }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg" key={item.id}>
       <a href={item.url} target="_blank">

@@ -2,10 +2,11 @@ import { useState } from "react";
 import NewsBoard from "../components/newsBoard";
 import SearchNewsFilter from "../components/searchNewsFilter";
 import { IoFilter } from "react-icons/io5";
+import { NewsCardType } from "../constants/types";
 
 export default function SearchNews() {
-  const [result, setResult] = useState<any>([]);
-  const [showFilter, setShowFilter] = useState<any>(true);
+  const [result, setResult] = useState<NewsCardType[]>([]);
+  const [showFilter, setShowFilter] = useState<boolean>(true);
   const date = new Date().toLocaleDateString();
 
   return (

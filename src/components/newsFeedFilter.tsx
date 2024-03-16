@@ -3,19 +3,19 @@ import useNewsFeed from "../hooks/useNewsFeed";
 import { useEffect, useState } from "react";
 import useFilters from "../hooks/useFilters";
 import Select from "react-select";
+import { Inputs, NewsFeedPropsTypes } from "../constants/types";
 
-type Inputs = {
-  category: any;
-  source: any;
-};
-
-function NewsFeedFilter({ setResult, setBannerArticle, showFilter }: any) {
+function NewsFeedFilter({
+  setResult,
+  setBannerArticle,
+  showFilter,
+}: NewsFeedPropsTypes) {
   const { handleSubmit, control, setValue } = useForm<Inputs>();
 
-  const [categories, setCategories] = useState<any>([]);
-  const [sources, setSources] = useState<any>([]);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [sources, setSources] = useState<any[]>([]);
 
-  const onSubmit: SubmitHandler<Inputs> = async ({ category, source }: any) => {
+  const onSubmit: SubmitHandler<Inputs> = async ({ category, source }) => {
     if (category) {
       localStorage.setItem("category", JSON.stringify(category));
     }
@@ -26,13 +26,12 @@ function NewsFeedFilter({ setResult, setBannerArticle, showFilter }: any) {
     getNews(JSON.stringify(category), JSON.stringify(source));
   };
 
-  const getNews = async (categories: any, source: any) => {
+  const getNews = async (categories: string | null, source: string | null) => {
     try {
       const articles = await useNewsFeed(categories, source);
       setBannerArticle(articles[0]);
       setResult(articles);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -55,9 +54,7 @@ function NewsFeedFilter({ setResult, setBannerArticle, showFilter }: any) {
       }
 
       getNews(categories, source);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, []);
 
   return (

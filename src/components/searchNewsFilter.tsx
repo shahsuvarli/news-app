@@ -1,13 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import useAPI from "../hooks/useAPI";
 import sources from "../assets/sources.json";
-
-type Inputs = {
-  keyword: string;
-  date: Date;
-  category: string;
-  source: string;
-};
+import { NewsFeedInputs } from "../constants/types";
 
 const categories = [
   { id: 0, name: "Sport" },
@@ -17,10 +11,17 @@ const categories = [
   { id: 4, name: "Entertainment" },
 ];
 
-function SearchNewsFilter({ setResult, showFilter }: any) {
-  const { register, handleSubmit } = useForm<Inputs>();
+interface SearchNewsFiless {
+  setResult: (arg0: any) => void;
+  showFilter: boolean;
+}
 
-  const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
+function SearchNewsFilter({ setResult, showFilter }: SearchNewsFiless) {
+  const { register, handleSubmit } = useForm<NewsFeedInputs>();
+
+  const onSubmit: SubmitHandler<NewsFeedInputs> = async (
+    data: NewsFeedInputs
+  ) => {
     const results = await useAPI(data);
     setResult(results);
   };
@@ -55,7 +56,7 @@ function SearchNewsFilter({ setResult, showFilter }: any) {
               defaultValue=""
             >
               <option value="">Select category</option>
-              {categories.map(({ id, name }: any) => (
+              {categories.map(({ id, name }) => (
                 <option key={id} value={name}>
                   {name}
                 </option>
@@ -72,7 +73,7 @@ function SearchNewsFilter({ setResult, showFilter }: any) {
               id="source"
             >
               <option value="">Select source</option>
-              {sources.map(({ id, name, link }: any) => (
+              {sources.map(({ id, name, link }) => (
                 <option key={id} value={link}>
                   {name}
                 </option>

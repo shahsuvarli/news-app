@@ -1,15 +1,15 @@
-export default async function useNewsFeed(data: any, value: any) {
+export default async function useNewsFeed(categories: any, sources: any) {
   // cleaning of array of categories
-  const arrayOfCategories: any = [];
-  JSON.parse(data)?.map((item: any) => {
-    arrayOfCategories.push(item.value);
+  const arrayOfCategories: string[] = [];
+  JSON.parse(categories)?.map(({ value }: { value: string }) => {
+    arrayOfCategories.push(value);
   });
   const stringOfCategories = arrayOfCategories.join(" OR ");
 
   // cleaning of array of sources
-  const arrayOfSources: any = [];
-  JSON.parse(value)?.map((item: any) => {
-    arrayOfSources.push(item.value);
+  const arrayOfSources: string[] = [];
+  JSON.parse(sources)?.map(({ value }: { value: string }) => {
+    arrayOfSources.push(value);
   });
   const stringOfSources = arrayOfSources.join(",");
 
