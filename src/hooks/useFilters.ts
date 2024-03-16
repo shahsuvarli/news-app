@@ -1,11 +1,13 @@
+import { CategoryType } from "../constants/types";
+
 export default async function useFilters() {
   const res = await fetch(
     "https://newsapi.org/v2/top-headlines/sources?&apiKey=5818a991931142769f180a3f0cbe92cd"
   );
 
   const response = await res.json();
-  const categories: any = [];
-  const urls: any = [];
+  const categories: CategoryType[] = [];
+  const urls: CategoryType[] = [];
 
   response.sources.map((item: any) => {
     categories.push({
@@ -19,10 +21,10 @@ export default async function useFilters() {
   });
 
   const uniqueCategories = Array.from(
-    new Map(categories.map((obj: any) => [obj.value, obj])).values()
+    new Map(categories.map((obj: CategoryType) => [obj.value, obj])).values()
   );
   const uniqueURLs = Array.from(
-    new Map(urls.map((obj: any) => [obj.value, obj])).values()
+    new Map(urls.map((obj: CategoryType) => [obj.value, obj])).values()
   );
 
   return { uniqueCategories, uniqueURLs };
