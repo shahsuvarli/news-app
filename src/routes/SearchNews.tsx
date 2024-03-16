@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import sources from "../assets/sources.json";
 import { useState } from "react";
 import useAPI from "../hooks/useAPI";
+import NewsBoard from "../components/newsBoard";
 
 type Inputs = {
   keyword: string;
@@ -18,7 +19,7 @@ const categories = [
   { id: 4, name: "Entertainment" },
 ];
 
-export default function SearchForm() {
+export default function SearchNews() {
   const [result, setResult] = useState<any>([]);
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -91,64 +92,10 @@ export default function SearchForm() {
         <input
           type="submit"
           className="bg-slate-500 rounded-md p-2 w-20 text-slate-100 hover:cursor-pointer"
+          value={"Search"}
         />
       </form>
-      <div className="mt-8 border-2 border-solid border-slate-300 rounded-md p-2 ">
-        <p className="text-center my-5 font-normal text-xl text-slate-100 bg-slate-400 rounded-md">
-          Results
-        </p>
-        <div className="grid grid-flow-row grid-cols-4 gap-x-4 gap-y-6 flex-wrap">
-          {result?.map((item: any) => (
-            // <div
-            //   key={item.id}
-            //   className="min-h-60 w-64 rounded-md drop-shadow-md relative bg-slate-300 p-2 flex justify-between fle-col"
-            // >
-            //   <Link to={item.url} target="_blank">
-            //     <p className="text-base text-slate-500">{item.title}</p>
-            //     <div className="relative">
-            //       <img
-            //         src={item.image}
-            //         className="object-cover w-40 aspect-video bottom-0 rounded-md"
-            //         onError={(e) =>
-            //           (e.currentTarget.src = item.altImage)
-            //         }
-            //       />
-            //       <p className="absolute bg-slate-700 text-slate-100 border-2 border-slate-100 border-solid rounded-full bottom-1 right-1 px-2 py-1 text-xs">
-            //         {item.date}
-            //       </p>
-            //       <p className="absolute left-1 bottom-1 bg-slate-700 text-slate-100 border-2 border-slate-100 border-solid rounded-full px-2 text-xs py-1">
-            //         {item.source}
-            //       </p>
-            //     </div>
-            //   </Link>
-            // </div>
-            <div
-              className="max-w-sm rounded overflow-hidden shadow-lg"
-              key={item.id}
-            >
-              <a href={item.url} target="_blank">
-                <img
-                  className="w-full object-contain h-60"
-                  src={item.image || item.altImage}
-                  alt={item.title}
-                />
-              </a>
-              <div className="px-6 py-4">
-                {/* <div className="font-bold text-xl mb-2">{item.source}</div> */}
-                <p className="text-gray-700 text-base">{item.title}</p>
-              </div>
-              <div className="px-6 pt-4 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {item.source}
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {item.date}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <NewsBoard result={result} title={"Search Results"} />
     </>
   );
 }
