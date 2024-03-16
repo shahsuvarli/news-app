@@ -1,13 +1,10 @@
 export default async function useAPI(data: any) {
-  console.log(data);
   if (data.source === "newsapi" || !data.source) {
     const query = data.keyword + (data.category ? ` AND ${data.category}` : "");
     const res = await fetch(
-      `https://newsapi.org/v2/everything?q=(${query})&from=${data.date}&language=en&sortBy=publishedAt&apiKey=1d59d6783d3a4f9ca5fc0fc9eaf52cc0`
+      `https://newsapi.org/v2/everything?q=(${query})&from=${data.date}&language=en&sortBy=publishedAt&apiKey=5818a991931142769f180a3f0cbe92cd`
     );
-    console.log(res.url);
     const result = await res.json();
-    console.log(result);
     const final_result = result.articles.map((obj: any, index: number) => {
       return {
         id: index,
@@ -19,7 +16,6 @@ export default async function useAPI(data: any) {
         altImage: "newsapi.png",
       };
     });
-    console.log(final_result);
     return final_result;
   } else if (data.source === "nytimes") {
     const parsedDate = data.date?.replaceAll("-", "");
@@ -55,7 +51,6 @@ export default async function useAPI(data: any) {
         data.date || "2022-01-01"
       }${section}&show-fields=thumbnail&api-key=2e0e9f73-d7a7-42a3-b25a-c2f8418d7048`
     );
-    console.log(res.url);
     const response = await res.json();
     const final_result = response.response.results.map(
       (obj: any, index: number) => {

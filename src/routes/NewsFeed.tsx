@@ -33,13 +33,13 @@ export default function NewsFeed() {
       <div className="flex flex-row bg-slate-800">
         <div className="relative w-full bg-slate-700 h-100">
           <img
-            src={bannerArticle?.image}
+            src={bannerArticle?.image || 'https://images.unsplash.com/photo-1622463461333-611830d028bd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
             alt="banner-image"
             className="w-full bg-slate-400 h-96 object-cover"
           />
           <span className="sm:absolute relative w-full bg-slate-500 sm:w-1/3 right-0 bottom-0 sm:h-full h-auto p-4 flex flex-col justify-between opacity-90">
             <p className="bottom-0 text-slate-100 right-0 sm:text-xl text-sm">
-              {bannerArticle?.title}
+              {bannerArticle?.title || "Dear user, please customize your news feed first"}
             </p>
           </span>
         </div>

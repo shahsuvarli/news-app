@@ -15,12 +15,23 @@ function NewsFeedFilter({ setResult, setBannerArticle, showFilter }: any) {
   const [categories, setCategories] = useState<any>([]);
   const [sources, setSources] = useState<any>([]);
 
-  const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
-    if (data.category) {
-      localStorage.setItem("category", JSON.stringify(data.category));
+  const onSubmit: SubmitHandler<Inputs> = async ({ category, source }: any) => {
+    if (category) {
+      localStorage.setItem("category", JSON.stringify(category));
     }
-    if (data.source) {
-      localStorage.setItem("source", JSON.stringify(data.source));
+    if (source) {
+      localStorage.setItem("source", JSON.stringify(source));
+    }
+
+    getNews(JSON.stringify(category), JSON.stringify(source));
+  };
+
+  const getNews = async (categories: any, source: any) => {
+    try {
+      const articles = await useNewsFeed(categories, source);
+      setBannerArticle(articles[0]);
+      setResult(articles);
+    } catch (error) {
     }
   };
 
@@ -33,21 +44,20 @@ function NewsFeedFilter({ setResult, setBannerArticle, showFilter }: any) {
 
     fetchData();
 
-    const categories = localStorage.getItem("category");
-    const source = localStorage.getItem("source");
-    if (categories) {
-      setValue("category", JSON.parse(categories));
-    }
-    if (source) {
-      setValue("source", JSON.parse(source));
-    }
+    try {
+      const categories = localStorage.getItem("category");
+      const source = localStorage.getItem("source");
+      if (categories) {
+        setValue("category", JSON.parse(categories));
+      }
+      if (source) {
+        setValue("source", JSON.parse(source));
+      }
 
-    const getNews = async () => {
-      const articles = await useNewsFeed(categories, source);
-      setBannerArticle(articles[0]);
-      setResult(articles);
-    };
-    getNews();
+      getNews(categories, source);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
@@ -74,7 +84,6 @@ function NewsFeedFilter({ setResult, setBannerArticle, showFilter }: any) {
                   closeMenuOnSelect={false}
                   {...field}
                   id="category"
-                  // className="[&>div>div]:flex [&>div>div]:flex-row [&>div>div]:overflow-x-auto [&>div>div]:h-14 [&>div>div]:flex-nowrap [&>div>div>div]:min-w-20"
                 />
               )}
             />
@@ -92,7 +101,6 @@ function NewsFeedFilter({ setResult, setBannerArticle, showFilter }: any) {
                   closeMenuOnSelect={false}
                   {...field}
                   id="source"
-                  // className="[&>div>div]:flex [&>div>div]:flex-row [&>div>div]:overflow-x-auto [&>div>div]:h-14 [&>div>div]:flex-nowrap [&>div>div>div]:min-w-20"
                 />
               )}
             />

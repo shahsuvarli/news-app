@@ -8,9 +8,9 @@ function App() {
       <div className="mb-8">
         <Header />
       </div>
-      <div className="p-6">
+      <main className="p-6">
         <Outlet />
-      </div>
+      </main>
       <div className="mt-8">
         <Footer />
       </div>

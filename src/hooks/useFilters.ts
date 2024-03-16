@@ -1,6 +1,6 @@
 export default async function useFilters() {
   const res = await fetch(
-    "https://newsapi.org/v2/top-headlines/sources?&apiKey=1d59d6783d3a4f9ca5fc0fc9eaf52cc0"
+    "https://newsapi.org/v2/top-headlines/sources?&apiKey=5818a991931142769f180a3f0cbe92cd"
   );
 
   const response = await res.json();

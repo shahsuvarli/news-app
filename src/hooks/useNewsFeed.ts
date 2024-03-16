@@ -13,13 +13,17 @@ export default async function useNewsFeed(data: any, value: any) {
   });
   const stringOfSources = arrayOfSources.join(",");
 
+  const domainQuery = stringOfSources ? `&domains=${stringOfSources}` : "";
+
   const res = await fetch(
-    `https://newsapi.org/v2/everything?q=${stringOfCategories}&domains=${stringOfSources}&language=en&sortBy=publishedAt&apiKey=1d59d6783d3a4f9ca5fc0fc9eaf52cc0`
+    `https://newsapi.org/v2/everything?q=${
+      stringOfCategories || "news"
+    }${domainQuery}&language=en&sortBy=publishedAt&apiKey=5b17401668b04eae906aa1bd6a179966`
   );
 
   const response = await res.json();
 
-  const final_result = response.articles.map((obj: any, index: number) => {
+  const final_result = response.articles?.map((obj: any, index: number) => {
     return {
       id: index,
       date: obj.publishedAt.split("T")[0],
