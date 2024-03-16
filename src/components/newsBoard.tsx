@@ -7,7 +7,7 @@ function NewsBoard({result, title}:any) {
         {title}
       </p>
 
-      <div className="grid grid-flow-row xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-4 gap-y-6 flex-wrap justify-items-stretch justify-center">
+      <div className="grid grid-flow-row grid-cols-4 gap-x-4 gap-y-6 flex-wrap">
         {result?.map((item: any) => (
           <NewsCard item={item} key={item.id} />
         ))}
